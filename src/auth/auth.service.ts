@@ -22,10 +22,10 @@ export class AuthService {
 
   async registerUser(newUser: UserDTO): Promise<UserDTO> {
     const userFind: UserDTO = await this.userService.findByFields({
-      where: { username: newUser.username },
+      where: { user_email: newUser.user_email },
     })
     if (userFind) {
-      throw new HttpException('Username aleady used!', HttpStatus.BAD_REQUEST)
+      throw new HttpException('User email aleady used!', HttpStatus.BAD_REQUEST)
     }
     return await this.userService.save(newUser)
   }
@@ -54,7 +54,7 @@ export class AuthService {
     userDTO: UserDTO,
   ): Promise<{ accessToken: string } | undefined> {
     const userFind: User = await this.userService.findByFields({
-      where: { username: userDTO.username },
+      where: { user_email: userDTO.user_email },
     })
     const validatePassword = await bcrypt.compare(
       userDTO.password,
@@ -67,8 +67,7 @@ export class AuthService {
     this.convertInAuthorities(userFind)
     const payload: Payload = {
       id: userFind.id,
-      username: userFind.username,
-      // authorities: userFind.authorities,
+      user_email: userFind.user_email,
       authorities: userFind.authorities,
     }
     return {

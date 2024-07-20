@@ -1,5 +1,5 @@
 export interface Payload {
   id: number
-  username: string
+  user_email: string
   authorities?: any[]
 }
