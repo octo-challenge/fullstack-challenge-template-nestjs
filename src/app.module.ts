@@ -9,6 +9,7 @@ import { CatsController } from './cats/cats.controller'
 import { CatsService } from './cats/cats.service'
 import { CatsModule } from './cats/cats.module'
 import { Cat } from './cats/entity/cats.entity'
+import { CookiesModule } from './cookies/cookies.module';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { Cat } from './cats/entity/cats.entity'
     }),
     AuthModule,
     CatsModule,
+    CookiesModule
   ],
   controllers: [AppController, CatsController],
   providers: [AppService, CatsService],
