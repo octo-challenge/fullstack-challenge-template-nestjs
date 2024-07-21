@@ -19,13 +19,13 @@ import { Roles } from './repository/role.decorator'
 export class AuthController {
   constructor(private authService: AuthService) {}
 
-  @Post('/register')
-  async registerAccount(@Req() req: Request, @Body() userDTO: UserDTO) {
+  @Post('/sign-up')
+  async signUp(@Req() req: Request, @Body() userDTO: UserDTO) {
     return await this.authService.registerUser(userDTO)
   }
 
-  @Post('/login')
-  async login(@Body() userDTO: UserDTO, @Res() res: Response) {
+  @Post('/sign-in')
+  async signin(@Body() userDTO: UserDTO, @Res() res: Response) {
     const jwt = await this.authService.validateUser(userDTO)
     res.setHeader('Authorization', 'Bearer ' + jwt.accessToken)
     return res.json(jwt)
