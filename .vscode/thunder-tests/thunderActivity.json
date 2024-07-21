@@ -1,0 +1,68 @@
+[
+  {
+    "_id": "b696ddf4-380a-4336-83ec-8b536cb5ccf3",
+    "colId": "history",
+    "containerId": "",
+    "name": "{{domain}}/auth/sign-in",
+    "url": "{{domain}}/auth/sign-in",
+    "method": "POST",
+    "sortNum": 0,
+    "created": "2024-07-21T09:02:34.321Z",
+    "modified": "2024-07-21T09:05:09.770Z",
+    "headers": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"user_email\": \"test@test.com\",\n  \"password\": \"12345\"\n}",
+      "form": []
+    }
+  },
+  {
+    "_id": "2e415861-ada6-4279-adfe-380f297bb5f6",
+    "colId": "history",
+    "containerId": "",
+    "name": "{{domain}}/auth/sign-up",
+    "url": "{{domain}}/auth/sign-up",
+    "method": "POST",
+    "sortNum": 0,
+    "created": "2024-07-21T09:03:49.342Z",
+    "modified": "2024-07-21T09:05:16.357Z",
+    "headers": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"user_email\": \"test@test.com\",\n  \"password\": \"12345\"\n}",
+      "form": []
+    }
+  },
+  {
+    "_id": "d1104e3c-c477-4a7c-9702-5f7d507df109",
+    "colId": "history",
+    "containerId": "",
+    "name": "{{domain}}/auth/admin-role",
+    "url": "{{domain}}/auth/admin-role",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2024-07-21T09:05:40.952Z",
+    "modified": "2024-07-21T09:06:22.374Z",
+    "headers": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwidXNlcl9lbWFpbCI6InRlc3RAdGVzdC5jb20iLCJhdXRob3JpdGllcyI6W3sibmFtZSI6IlJPTEVfQURNSU4ifSx7Im5hbWUiOiJST0xFX1VTRVIifV0sImlhdCI6MTcyMTU1MjcxMCwiZXhwIjoxNzIxNTUzMDEwfQ.j427jtw0ukKfIF95Fqe4sdyjoCUzJOxiifB-G8XJJCk"
+    }
+  },
+  {
+    "_id": "d4214a94-83ec-4d7b-9d53-f2bfbe6ac392",
+    "colId": "history",
+    "containerId": "",
+    "name": "{{domain}}/auth/authenticate",
+    "url": "{{domain}}/auth/authenticate",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2024-07-21T09:06:42.090Z",
+    "modified": "2024-07-21T09:06:55.921Z",
+    "headers": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwidXNlcl9lbWFpbCI6InRlc3RAdGVzdC5jb20iLCJhdXRob3JpdGllcyI6W3sibmFtZSI6IlJPTEVfQURNSU4ifSx7Im5hbWUiOiJST0xFX1VTRVIifV0sImlhdCI6MTcyMTU1MjcxMCwiZXhwIjoxNzIxNTUzMDEwfQ.j427jtw0ukKfIF95Fqe4sdyjoCUzJOxiifB-G8XJJCk"
+    }
+  }
+]
