@@ -5,11 +5,9 @@ services:
     image: postgres
     # 컨테이너 실행 시 재시작
     restart: always
-    # 컨테이너명 설정
-    container_name: postgres
     # 접근 포트 설정 (컨테이너 외부:컨테이너 내부)
     ports:
-      - "5432:5432"
+      - "${DB_PORT}:5432"
     # 환경 변수 설정
     environment:
       POSTGRES_DB: account
