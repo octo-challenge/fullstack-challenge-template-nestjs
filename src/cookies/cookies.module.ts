@@ -1,7 +1,7 @@
-import { Inject, MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
-import cookieParser from 'cookie-parser';
-import { ConfigModule, ConfigType } from '@nestjs/config';
-import cookiesConfig from './cookies.config';
+import { Inject, MiddlewareConsumer, Module, NestModule } from '@nestjs/common'
+import cookieParser from 'cookie-parser'
+import { ConfigModule, ConfigType } from '@nestjs/config'
+import cookiesConfig from './cookies.config'
 
 @Module({
   imports: [ConfigModule.forFeature(cookiesConfig)],
@@ -13,6 +13,6 @@ export class CookiesModule implements NestModule {
   ) {}
 
   configure(consumer: MiddlewareConsumer) {
-    consumer.apply(cookieParser(this.config.secret)).forRoutes('*');
+    consumer.apply(cookieParser(this.config.secret)).forRoutes('*')
   }
 }

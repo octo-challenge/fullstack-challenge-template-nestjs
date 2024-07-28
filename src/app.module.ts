@@ -9,7 +9,7 @@ import { CatsController } from './cats/cats.controller'
 import { CatsService } from './cats/cats.service'
 import { CatsModule } from './cats/cats.module'
 import { Cat } from './cats/entity/cats.entity'
-import { CookiesModule } from './cookies/cookies.module';
+import { CookiesModule } from './cookies/cookies.module'
 import { ConfigModule } from '@nestjs/config'
 import { pipe, flow } from 'fp-ts/function'
 
@@ -17,7 +17,7 @@ import { pipe, flow } from 'fp-ts/function'
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-      envFilePath: ['.env', '.env.prod']
+      envFilePath: ['.env', '.env.prod'],
     }),
     TypeOrmModule.forRoot({
       type: 'postgres',
@@ -31,7 +31,7 @@ import { pipe, flow } from 'fp-ts/function'
     }),
     AuthModule,
     CatsModule,
-    CookiesModule
+    CookiesModule,
   ],
   controllers: [AppController, CatsController],
   providers: [AppService, CatsService],

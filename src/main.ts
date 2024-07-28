@@ -27,9 +27,9 @@ async function bootstrap() {
       },
       'access-token',
     )
-    .build();
-  
-  const document = SwaggerModule.createDocument(app, config);
+    .build()
+
+  const document = SwaggerModule.createDocument(app, config)
   app.use(
     '/api',
     apiReference({
