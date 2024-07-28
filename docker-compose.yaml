@@ -1,6 +1,5 @@
 services: 
-  # 서비스 명
-  postgresql:
+  db:
     # 사용할 이미지
     image: postgres
     # 컨테이너 실행 시 재시작
@@ -10,10 +9,10 @@ services:
       - "${DB_PORT}:5432"
     # 환경 변수 설정
     environment:
-      POSTGRES_DB: account
+      POSTGRES_DB: ${DB_NAME}
       # PostgreSQL 계정 및 패스워드 설정 옵션
-      POSTGRES_USER: root
-      POSTGRES_PASSWORD: password
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
     # 볼륨 설정
     volumes:
       - ./volume/postgres/:/var/lib/postgresql/data
