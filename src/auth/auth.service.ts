@@ -50,9 +50,7 @@ export class AuthService {
     return user
   }
 
-  async validateUser(
-    userDTO: UserDTO,
-  ): Promise<{ accessToken: string } | undefined> {
+  async validateUser(userDTO: UserDTO): Promise<User | undefined> {
     const userFind: User = await this.userService.findByFields({
       where: { user_email: userDTO.user_email },
     })
@@ -65,14 +63,16 @@ export class AuthService {
     }
     // don't give the password, it's not good way to authorize with JWT!
     this.convertInAuthorities(userFind)
+    return userFind
+  }
+
+  async generateAccessToken(user: User): Promise<string> {
     const payload: Payload = {
-      id: userFind.id,
-      user_email: userFind.user_email,
-      authorities: userFind.authorities,
+      id: user.id,
+      user_email: user.user_email,
+      authorities: user.authorities,
     }
-    return {
-      accessToken: this.jwtService.sign(payload),
-    }
+    return this.jwtService.sign(payload)
   }
 
   async tokenValidateUser(payload: Payload) {
