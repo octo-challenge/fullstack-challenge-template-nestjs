@@ -58,11 +58,11 @@
     "method": "GET",
     "sortNum": 0,
     "created": "2024-07-21T09:06:42.090Z",
-    "modified": "2024-10-04T07:21:34.838Z",
+    "modified": "2024-10-04T07:27:31.329Z",
     "headers": [],
     "auth": {
       "type": "bearer",
-      "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwidXNlcl9lbWFpbCI6InRlc3RAdGVzdC5jb20iLCJhdXRob3JpdGllcyI6W10sImlhdCI6MTcyODAyNjQ4NywiZXhwIjoxNzI4MDI2Nzg3fQ.hjyrXzZjnxcFRpb7isgDAcXpW1Y4B8e2nccR-OD4UjQ"
+      "bearer": "{{token}}"
     }
   }
 ]

@@ -1,3 +1,5 @@
+import { pipe, flow } from 'fp-ts/function'
+import * as math from 'mathjs'
 import { Module } from '@nestjs/common'
 import { JwtModule } from '@nestjs/jwt'
 import { TypeOrmModule } from '@nestjs/typeorm'
@@ -11,6 +13,7 @@ import { JwtStrategy } from './strategy/passport.jwt.strategy'
 import { UserAuthority } from './entity/user-authority.entity'
 import { UserAuthorityRepository } from './repository/user-authority.repository'
 import { PassportModule } from '@nestjs/passport'
+import { ConfigService } from '@nestjs/config'
 
 @Module({
   imports: [
@@ -19,11 +22,22 @@ import { PassportModule } from '@nestjs/passport'
       UserRepository,
       UserAuthorityRepository,
     ]),
-    JwtModule.register({
-      secret: 'SECRET_KEY',
-      signOptions: { expiresIn: '300s' },
-    }),
     PassportModule,
+    JwtModule.registerAsync({
+      inject: [ConfigService],
+      useFactory: (config: ConfigService) => {
+        const secret = config.get<string>('JWT_ACCESS_SECRET')
+        return {
+          secret,
+          signOptions: {
+            expiresIn: pipe(
+              math.chain(1).multiply(60).multiply(5).done(),
+              (v) => `${v}s`,
+            ),
+          },
+        }
+      },
+    }),
   ],
   exports: [TypeOrmModule, TypeOrmExModule],
   controllers: [AuthController],
