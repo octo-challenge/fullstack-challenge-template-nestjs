@@ -8,11 +8,11 @@
     "method": "POST",
     "sortNum": 0,
     "created": "2024-07-21T09:02:34.321Z",
-    "modified": "2024-07-21T09:05:09.770Z",
+    "modified": "2024-10-04T07:22:49.003Z",
     "headers": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"user_email\": \"test@test.com\",\n  \"password\": \"12345\"\n}",
+      "raw": "{\n  \"user_email\": \"{{user_id}}\",\n  \"password\": \"{{user_pw}}\"\n}",
       "form": []
     }
   },
@@ -25,11 +25,11 @@
     "method": "POST",
     "sortNum": 0,
     "created": "2024-07-21T09:03:49.342Z",
-    "modified": "2024-07-21T09:05:16.357Z",
+    "modified": "2024-09-16T04:31:47.293Z",
     "headers": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"user_email\": \"test@test.com\",\n  \"password\": \"12345\"\n}",
+      "raw": "{\n  \"user_email\": \"test@test.com\",\n  \"password\": \"12345678\"\n}",
       "form": []
     }
   },
@@ -42,11 +42,11 @@
     "method": "GET",
     "sortNum": 0,
     "created": "2024-07-21T09:05:40.952Z",
-    "modified": "2024-07-21T09:06:22.374Z",
+    "modified": "2024-10-03T22:17:10.497Z",
     "headers": [],
     "auth": {
       "type": "bearer",
-      "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwidXNlcl9lbWFpbCI6InRlc3RAdGVzdC5jb20iLCJhdXRob3JpdGllcyI6W3sibmFtZSI6IlJPTEVfQURNSU4ifSx7Im5hbWUiOiJST0xFX1VTRVIifV0sImlhdCI6MTcyMTU1MjcxMCwiZXhwIjoxNzIxNTUzMDEwfQ.j427jtw0ukKfIF95Fqe4sdyjoCUzJOxiifB-G8XJJCk"
+      "bearer": "{{token}}"
     }
   },
   {
@@ -58,11 +58,11 @@
     "method": "GET",
     "sortNum": 0,
     "created": "2024-07-21T09:06:42.090Z",
-    "modified": "2024-07-21T09:06:55.921Z",
+    "modified": "2024-10-04T07:21:34.838Z",
     "headers": [],
     "auth": {
       "type": "bearer",
-      "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwidXNlcl9lbWFpbCI6InRlc3RAdGVzdC5jb20iLCJhdXRob3JpdGllcyI6W3sibmFtZSI6IlJPTEVfQURNSU4ifSx7Im5hbWUiOiJST0xFX1VTRVIifV0sImlhdCI6MTcyMTU1MjcxMCwiZXhwIjoxNzIxNTUzMDEwfQ.j427jtw0ukKfIF95Fqe4sdyjoCUzJOxiifB-G8XJJCk"
+      "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwidXNlcl9lbWFpbCI6InRlc3RAdGVzdC5jb20iLCJhdXRob3JpdGllcyI6W10sImlhdCI6MTcyODAyNjQ4NywiZXhwIjoxNzI4MDI2Nzg3fQ.hjyrXzZjnxcFRpb7isgDAcXpW1Y4B8e2nccR-OD4UjQ"
     }
   }
 ]
