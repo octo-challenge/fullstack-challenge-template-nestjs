@@ -1,19 +1,21 @@
 import { pipe, flow } from 'fp-ts/function'
-import * as math from 'mathjs'
 import * as A from 'fp-ts/Array'
 import {
+  BadRequestException,
   HttpException,
   HttpStatus,
   Injectable,
+  NotFoundException,
   UnauthorizedException,
 } from '@nestjs/common'
 import { UserDTO } from './dto/user.dto'
 import { User } from './entity/user.entity'
 import { UserService } from './user.service'
 import * as bcrypt from 'bcrypt'
-import { Payload } from './security/payload.interface'
+import { Payload } from './dto/payload.interface'
 import { JwtService } from '@nestjs/jwt'
 import { ConfigService } from '@nestjs/config'
+import { RefreshTokenDto } from './dto/refresh-token.dto'
 
 @Injectable()
 export class AuthService {
@@ -61,8 +63,11 @@ export class AuthService {
       userDTO.password,
       userFind.password,
     )
-    if (!userFind || !validatePassword) {
-      throw new UnauthorizedException()
+    if (!userFind) {
+      throw new NotFoundException('User not found!')
+    }
+    if (!validatePassword) {
+      throw new BadRequestException('Invalid credentials!')
     }
     // don't give the password, it's not good way to authorize with JWT!
     this.convertInAuthorities(userFind)
@@ -90,16 +95,9 @@ export class AuthService {
       { id: payload.id },
       {
         secret: this.configService.get('JWT_REFRESH_SECRET'),
-        expiresIn: pipe(
-          math
-            .chain(1)
-            .multiply(60)
-            .multiply(60)
-            .multiply(24)
-            .multiply(7)
-            .done(),
-          (v) => `${v}s`,
-        ), //'7d',
+        expiresIn: this.configService.get<string>(
+          'JWT_REFRESH_EXPIRATION_TIME',
+        ),
       },
     )
   }
@@ -110,5 +108,32 @@ export class AuthService {
     })
     this.flatAuthorities(userFind)
     return userFind
+  }
+
+  async refresh(
+    refreshTokenDto: RefreshTokenDto,
+  ): Promise<{ access_token: string }> {
+    const { refresh_token } = refreshTokenDto
+
+    const secret = this.configService.get('JWT_REFRESH_SECRET')
+    // Verify refresh token
+    // JWT Refresh Token 검증 로직
+    const decodedRefreshToken = this.jwtService.verify(refresh_token, {
+      secret,
+    })
+
+    const userId = decodedRefreshToken.id
+    const user = await this.userService.getUserIfRefreshTokenMatches(
+      refresh_token,
+      userId,
+    )
+    if (!user) {
+      throw new UnauthorizedException('Invalid user!')
+    }
+
+    // Generate new access token
+    const access_token = await this.generateAccessToken(user)
+
+    return { access_token }
   }
 }

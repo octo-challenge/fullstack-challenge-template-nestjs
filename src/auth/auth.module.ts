@@ -9,11 +9,13 @@ import { UserRepository } from './user.repository'
 import { UserService } from './user.service'
 import { TypeOrmExModule } from './repository/typeorm-ex.module'
 import { User } from './entity/user.entity'
-import { JwtStrategy } from './strategy/passport.jwt.strategy'
 import { UserAuthority } from './entity/user-authority.entity'
 import { UserAuthorityRepository } from './repository/user-authority.repository'
 import { PassportModule } from '@nestjs/passport'
 import { ConfigService } from '@nestjs/config'
+import { JwtRefreshStrategy } from './strategy/jwt-refresh.strategy'
+import { JwtAccessAuthGuard } from './guard/jwt-access.guard'
+import { JwtRefreshGuard } from './guard/jwt-refresh.guard'
 
 @Module({
   imports: [
@@ -41,6 +43,12 @@ import { ConfigService } from '@nestjs/config'
   ],
   exports: [TypeOrmModule, TypeOrmExModule],
   controllers: [AuthController],
-  providers: [AuthService, UserService, JwtStrategy],
+  providers: [
+    AuthService,
+    UserService,
+    JwtRefreshStrategy,
+    JwtAccessAuthGuard,
+    JwtRefreshGuard,
+  ],
 })
 export class AuthModule {}
