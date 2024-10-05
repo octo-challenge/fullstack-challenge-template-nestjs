@@ -16,4 +16,10 @@ export class User {
     eager: true,
   })
   authorities?: any[]
+
+  @Column({ nullable: true })
+  currentRefreshToken: string
+
+  @Column({ type: 'timestamp', nullable: true })
+  currentRefreshTokenExp: Date
 }
